@@ -163,6 +163,19 @@ body{
     background:black;
 
     position:relative;
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+}
+
+.prank::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    z-index:1;
 }
 
 .prank-text{
@@ -180,6 +193,14 @@ body{
     text-shadow:
     0 0 40px red,
     0 0 80px red;
+
+    position:relative;
+    z-index:2;
+}
+
+.prank p{
+    position:relative;
+    z-index:2;
 }
 
 .monkey{
@@ -190,6 +211,11 @@ body{
 
     animation:
     monkeyAppear 1s ease-out;
+
+    position:relative;
+    z-index:2;
+
+    display:none;
 }
 
 @keyframes monkeyAppear{

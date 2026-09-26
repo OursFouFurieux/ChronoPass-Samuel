@@ -1,0 +1,248 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Poppins",sans-serif;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+.stars{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+
+    background:
+    radial-gradient(circle at top,
+    #355d9a,
+    transparent 40%),
+    #050816;
+}
+
+.hero,
+.story,
+.analysis,
+.prank{
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:30px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,10vw,7rem);
+}
+
+.hero h2{
+    color:#8abaff;
+    margin:20px 0;
+}
+
+.badge{
+    background:#1d4ed8;
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+#startBtn{
+
+    margin-top:25px;
+
+    padding:16px 32px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#8abaff;
+
+    color:#07101b;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+#countdown{
+
+    height:120px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#8abaff;
+
+    font-size:clamp(4rem,10vw,8rem);
+
+    font-weight:900;
+}
+
+.story{
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.story h2{
+    font-size:clamp(2rem,6vw,4rem);
+    margin-bottom:20px;
+}
+
+.story p{
+    line-height:1.8;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(80px);
+    transition:1s;
+}
+
+.visible{
+    opacity:1;
+    transform:none;
+}
+
+.analysis h2{
+    margin-bottom:25px;
+}
+
+.bar{
+
+    width:min(700px,90vw);
+
+    height:25px;
+
+    background:#222;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#fill{
+
+    height:100%;
+
+    width:0;
+
+    background:
+    linear-gradient(
+    90deg,
+    #4facfe,
+    #00f2fe
+    );
+}
+
+#percent{
+
+    margin-top:20px;
+
+    font-size:2rem;
+}
+
+.prank{
+
+    background:black;
+
+    position:relative;
+}
+
+.prank-text{
+
+    font-size:clamp(5rem,20vw,14rem);
+
+    font-weight:900;
+
+    color:red;
+
+    animation:
+    flash .15s infinite,
+    shake .1s infinite;
+
+    text-shadow:
+    0 0 40px red,
+    0 0 80px red;
+}
+
+.monkey{
+
+    width:min(450px,90vw);
+
+    margin-top:40px;
+
+    animation:
+    monkeyAppear 1s ease-out;
+}
+
+@keyframes monkeyAppear{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(100px)
+        scale(.5);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0)
+        scale(1);
+    }
+
+}
+
+@keyframes flash{
+
+    50%{
+        color:white;
+    }
+
+}
+
+@keyframes shake{
+
+    25%{
+        transform:translateX(-8px);
+    }
+
+    50%{
+        transform:translateX(8px);
+    }
+
+    75%{
+        transform:translateX(-8px);
+    }
+
+}
+
+body.launching{
+
+    animation:bright 1s infinite;
+}
+
+@keyframes bright{
+
+    50%{
+        filter:brightness(1.3);
+    }
+
+}

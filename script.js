@@ -1,3 +1,63 @@
+// SCROLL SNAP - GESTION DU SWIPE
+
+let currentSection = 0;
+let isTransitioning = false;
+const sections = document.querySelectorAll("section");
+
+// Empêcher le scroll normal
+if (document.body) {
+    document.body.style.overflow = "hidden";
+}
+
+// Variables pour détecter le swipe
+let touchStartY = 0;
+let touchEndY = 0;
+
+document.addEventListener("touchstart", (e) => {
+    touchStartY = e.changedTouches[0].clientY;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+    touchEndY = e.changedTouches[0].clientY;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    if (isTransitioning || sections.length === 0) return;
+
+    const diff = touchStartY - touchEndY;
+    const threshold = 50;
+
+    // Swipe vers le haut = aller à la section suivante
+    if (diff > threshold && currentSection < sections.length - 1) {
+        currentSection++;
+        navigateToSection();
+    }
+
+    // Swipe vers le bas = aller à la section précédente
+    if (diff < -threshold && currentSection > 0) {
+        currentSection--;
+        navigateToSection();
+    }
+}
+
+function navigateToSection() {
+    isTransitioning = true;
+
+    const targetSection = sections[currentSection];
+
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 1000);
+}
+
 // REVEAL
 
 document.querySelectorAll(".reveal")
@@ -25,55 +85,56 @@ document.querySelectorAll(".reveal")
 const btn = document.getElementById("startBtn");
 const cd = document.getElementById("countdown");
 
-btn.addEventListener("click", () => {
+if (btn) {
+    btn.addEventListener("click", () => {
 
-    btn.style.display = "none";
+        btn.style.display = "none";
 
-    document.body.classList.add("launching");
+        document.body.classList.add("launching");
 
-    const music = document.getElementById("epicMusic");
+        const music = document.getElementById("epicMusic");
 
-    if(music){
-        music.play().catch(() => {});
-    }
-
-    let value = 5;
-
-    cd.textContent = value;
-
-    const timer = setInterval(() => {
-
-        value--;
-
-        if(value > 0){
-
-            cd.textContent = value;
-
-        }else if(value === 0){
-
-            cd.textContent = "🚀";
-
-        }else{
-
-            clearInterval(timer);
-
-            document.body.classList.remove(
-                "launching"
-            );
-
-            document
-                .querySelector(".story")
-                .scrollIntoView({
-                    behavior:"smooth"
-                });
-
-            cd.textContent = "";
-
+        if(music){
+            music.play().catch(() => {});
         }
 
-    },1000);
+        let value = 5;
 
-});
+        cd.textContent = value;
+
+        const timer = setInterval(() => {
+
+            value--;
+
+            if(value > 0){
+
+                cd.textContent = value;
+
+            }else if(value === 0){
+
+                cd.textContent = "🚀";
+
+            }else{
+
+                clearInterval(timer);
+
+                document.body.classList.remove(
+                    "launching"
+                );
+
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                    navigateToSection();
+                }
+
+                cd.textContent = "";
+
+            }
+
+        },1000);
+
+    });
+}
 
 
 // ANALYSE
@@ -83,31 +144,33 @@ let analysisStarted = false;
 const analysisSection =
     document.querySelector(".analysis");
 
-const progressObserver =
-new IntersectionObserver(entries => {
+if (analysisSection) {
+    const progressObserver =
+    new IntersectionObserver(entries => {
 
-    entries.forEach(entry => {
+        entries.forEach(entry => {
 
-        if(
-            entry.isIntersecting &&
-            !analysisStarted
-        ){
+            if(
+                entry.isIntersecting &&
+                !analysisStarted
+            ){
 
-            analysisStarted = true;
+                analysisStarted = true;
 
-            startAnalysis();
+                startAnalysis();
 
-        }
+            }
 
+        });
+
+    },{
+        threshold:0.5
     });
 
-},{
-    threshold:0.5
-});
-
-progressObserver.observe(
-    analysisSection
-);
+    progressObserver.observe(
+        analysisSection
+    );
+}
 
 function startAnalysis(){
 
@@ -160,13 +223,14 @@ function startAnalysis(){
 
                 setTimeout(() => {
 
-                    document
-                    .getElementById(
-                        "prankSection"
-                    )
-                    .scrollIntoView({
-                        behavior:"smooth"
-                    });
+                    const prankIndex = Array.from(sections).findIndex(
+                        s => s.id === "prankSection"
+                    );
+
+                    if (prankIndex !== -1) {
+                        currentSection = prankIndex;
+                        navigateToSection();
+                    }
 
                 },1000);
 

@@ -4,11 +4,18 @@
     box-sizing:border-box;
 }
 
+html, body {
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#050816;
+}
+
 body{
     font-family:"Poppins",sans-serif;
-    background:#050816;
     color:white;
     overflow-x:hidden;
+    touch-action:none;
 }
 
 .stars{
@@ -27,17 +34,14 @@ body{
 .story,
 .analysis,
 .prank{
-
+    position:relative;
     min-height:100vh;
-
+    width:100%;
     display:flex;
     flex-direction:column;
-
     justify-content:center;
     align-items:center;
-
     text-align:center;
-
     padding:30px;
 }
 
@@ -59,44 +63,28 @@ body{
 }
 
 #startBtn{
-
     margin-top:25px;
-
     padding:16px 32px;
-
     border:none;
-
     border-radius:40px;
-
     background:#8abaff;
-
     color:#07101b;
-
     font-weight:700;
-
     cursor:pointer;
 }
 
 #countdown{
-
     height:120px;
-
     display:flex;
-
     align-items:center;
     justify-content:center;
-
     color:#8abaff;
-
     font-size:clamp(4rem,10vw,8rem);
-
     font-weight:900;
 }
 
 .story{
-
     max-width:900px;
-
     margin:auto;
 }
 
@@ -125,150 +113,83 @@ body{
 }
 
 .bar{
-
     width:min(700px,90vw);
-
     height:25px;
-
     background:#222;
-
     border-radius:20px;
-
     overflow:hidden;
 }
 
 #fill{
-
     height:100%;
-
     width:0;
-
-    background:
-    linear-gradient(
-    90deg,
-    #4facfe,
-    #00f2fe
-    );
+    background:linear-gradient(90deg, #4facfe, #00f2fe);
 }
 
 #percent{
-
     margin-top:20px;
-
     font-size:2rem;
 }
 
 .prank{
-
-    background:black;
-
+    background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url("monkey.png") center center / cover no-repeat;
     position:relative;
-
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
-    background-repeat:no-repeat;
+    overflow:hidden;
+    z-index:0;
 }
 
 .prank::before{
     content:"";
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.4);
+    background:rgba(0,0,0,0.15);
+    z-index:0;
+}
+
+.prank > * {
+    position:relative;
     z-index:1;
 }
 
 .prank-text{
-
     font-size:clamp(5rem,20vw,14rem);
-
     font-weight:900;
-
     color:red;
-
-    animation:
-    flash .15s infinite,
-    shake .1s infinite;
-
-    text-shadow:
-    0 0 40px red,
-    0 0 80px red;
-
-    position:relative;
-    z-index:2;
-}
-
-.prank p{
-    position:relative;
-    z-index:2;
+    animation:flash .15s infinite, shake .1s infinite;
+    text-shadow:0 0 40px red, 0 0 80px red;
 }
 
 .monkey{
-
-    width:min(450px,90vw);
-
-    margin-top:40px;
-
-    animation:
-    monkeyAppear 1s ease-out;
-
-    position:relative;
-    z-index:2;
-
     display:none;
 }
 
 @keyframes monkeyAppear{
-
     from{
         opacity:0;
-        transform:
-        translateY(100px)
-        scale(.5);
+        transform:translateY(100px) scale(.5);
     }
-
     to{
         opacity:1;
-        transform:
-        translateY(0)
-        scale(1);
+        transform:translateY(0) scale(1);
     }
-
 }
 
 @keyframes flash{
-
-    50%{
-        color:white;
-    }
-
+    50%{ color:white; }
 }
 
 @keyframes shake{
-
-    25%{
-        transform:translateX(-8px);
-    }
-
-    50%{
-        transform:translateX(8px);
-    }
-
-    75%{
-        transform:translateX(-8px);
-    }
-
+    25%{ transform:translateX(-8px); }
+    50%{ transform:translateX(8px); }
+    75%{ transform:translateX(-8px); }
 }
 
 body.launching{
-
     animation:bright 1s infinite;
 }
 
 @keyframes bright{
-
-    50%{
-        filter:brightness(1.3);
-    }
-
+    50%{ filter:brightness(1.3); }
 }

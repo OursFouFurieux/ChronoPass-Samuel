@@ -1,131 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ChronoPass™ - Samuel</title>
+    <title>ChronoPass™ - Samuel</title>
 
-https://fonts.googleapis.com
-https://fonts.gstatic.com
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
 
-https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800;900&display=swap
-
-https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.jsscript>
-
-
-<link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="stars"></div>
 
-<div class="stars"></div>
+    <section class="hero">
+        <div class="content">
+            <div class="badge">CHRONOPASS™ PREMIUM</div>
 
-<section class="hero">
+            <h1>Votre saut temporel est confirmé</h1>
+            <h2>Destination : Samuel</h2>
 
-    <div class="content">
+            <p>
+                Notre intelligence artificielle a analysé l'intégralité
+                de votre ligne temporelle.
+            </p>
 
-        <div class="badge">
-            CHRONOPASS™ PREMIUM
+            <button id="startBtn" type="button">Commencer le voyage</button>
+            <div id="countdown" aria-live="polite"></div>
+
+            <audio id="epicMusic" src="epic.mp3" preload="auto"></audio>
         </div>
+    </section>
 
-        <h1>Votre saut temporel est confirmé</h1>
-
-        <h2>Destination : Samuel</h2>
-
+    <section class="story reveal">
+        <h2>Le Commencement</h2>
         <p>
-            Notre intelligence artificielle a analysé l'intégralité
-            de votre ligne temporelle.
+            Dans des temps reculés apparut Samuel.
+            Jeune aventurier,
+            spécialiste des plans douteux,
+            inventeur de solutions improbables.
         </p>
+    </section>
 
-        <button id="startBtn">
-            Commencer le voyage
-        </button>
+    <section class="story reveal">
+        <h2>Les Quêtes Perdues</h2>
+        <p>
+            Des missions furent accomplies.
+            Certaines héroïques.
+            D'autres sont encore classées secret défense.
+        </p>
+    </section>
 
-        <div id="countdown"></div>
+    <section class="story reveal">
+        <h2>Le Maître du Temps</h2>
+        <p>
+            Au fil des années,
+            Samuel gagna de l'expérience,
+            des anecdotes,
+            et un humour parfois contesté
+            mais jamais égalé.
+        </p>
+    </section>
 
-        <audio id="epicMusic">
-            epic.mp3
-        </audio>
+    <section class="analysis reveal">
+        <h2>Analyse Temporelle...</h2>
+        <div class="bar">
+            <div id="fill"></div>
+        </div>
+        <p id="percent">0%</p>
+    </section>
 
-    </div>
+    <section id="prankSection" class="prank">
+        <div class="confetti-bg">🎉</div>
+        <h1 class="prank-text">TA GUEULE !</h1>
+        <p>Joyeux anniversaire Samuel ❤️</p>
+        <p>Tu as vraiment cru qu'on t'offrait un saut dans le temps.</p>
+        <img class="monkey" src="monkey.png" alt="Singe surpris">
+    </section>
 
-</section>
-
-<section class="story reveal">
-
-    <h2>Le Commencement</h2>
-
-    <p>
-        Dans des temps reculés apparut Samuel.
-        Jeune aventurier,
-        spécialiste des plans douteux,
-        inventeur de solutions improbables.
-    </p>
-
-</section>
-
-<section class="story reveal">
-
-    <h2>Les Quêtes Perdues</h2>
-
-    <p>
-        Des missions furent accomplies.
-        Certaines héroïques.
-        D'autres sont encore classées secret défense.
-    </p>
-
-</section>
-
-<section class="story reveal">
-
-    <h2>Le Maître du Temps</h2>
-
-    <p>
-        Au fil des années,
-        Samuel gagna de l'expérience,
-        des anecdotes,
-        et un humour parfois contesté
-        mais jamais égalé.
-    </p>
-
-</section>
-
-<section class="analysis reveal">
-
-    <h2>Analyse Temporelle...</h2>
-
-    <div class="bar">
-        <div id="fill"></div>
-    </div>
-
-    <p id="percent">0%</p>
-
-</section>
-
-<section id="prankSection" class="prank">
-
-    <div class="confetti-bg">
-        🎉
-    </div>
-
-    <h1 class="prank-text">
-        TA GUEULE !
-    </h1>
-
-    <p>
-        Joyeux anniversaire Samuel ❤️
-    </p>
-
-    <p>
-        Tu as vraiment cru qu'on t'offrait un saut dans le temps.
-    </p>
-
-    monkey.png
-
-</section>
-
-<script src="scripts.js"></script>
-
+    <script src="script.js" defer></script>
 </body>
 </html>
